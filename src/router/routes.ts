@@ -5,4 +5,9 @@ export const routes: RouteRecordRaw[] = [
     name: 'ClassPage',
     component: () => import('@/views/class-page/ClassPage.vue'),
   },
+  {
+    path: '/:id',
+    name: 'TestPage',
+    component: () => import('@/views/test-page/TestPage.vue'),
+  },
 ]
