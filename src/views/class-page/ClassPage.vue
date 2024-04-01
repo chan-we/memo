@@ -1,7 +1,7 @@
 <template>
   <div class="class-page">
     <el-row>
-      <el-col :span="6" v-for="i in 24" :key="i">
+      <el-col v-for="i in 24" :key="i" :xs="24" :sm="12" :lg="6">
         <el-card shadow="hover" @click="goDetail(i)">
           <p>第{{ i }}课</p>
         </el-card>
