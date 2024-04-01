@@ -1,6 +1,4 @@
-import { IWordItem } from '../types/alphabeta'
-
-const wordList: IWordItem[] = [
+export default [
   {
     cn: '菜肴，饭菜',
     jp: 'りょうり（料理）',
@@ -351,5 +349,3 @@ const wordList: IWordItem[] = [
     jp: 'きもちがいい（気持ちがいい）',
   },
 ]
-
-export default wordList

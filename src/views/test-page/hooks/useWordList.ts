@@ -1,7 +1,7 @@
 import { useRoute } from 'vue-router'
 import { ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
-import { IWordItem } from '@/types/alphabeta'
+import { IWordItem } from '@/types/word'
 
 export default function useWordList() {
   const route = useRoute()
