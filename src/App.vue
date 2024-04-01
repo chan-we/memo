@@ -1,9 +1,7 @@
 <template>
-  <TestPage />
+  <router-view />
 </template>
 
-<script setup lang="ts">
-  import TestPage from './views/test-page/TestPage.vue'
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>

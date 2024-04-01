@@ -1,5 +1,5 @@
 <template>
-  <div class="test-page">
+  <div class="test-page" v-if="wordList?.length">
     <div class="test-page-content">
       <h2>{{ wordList[index].cn }}</h2>
       <span class="attr">{{
@@ -26,7 +26,9 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import { debounce } from 'lodash-es'
-  import wordList from '../../config/lesson9'
+  import useWordList from './hooks/useWordList'
+
+  const { wordList } = useWordList()
 
   const index = ref(0)
   const showAnswer = ref(false)
