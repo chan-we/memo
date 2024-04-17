@@ -1,6 +1,6 @@
 <template>
   <div class="test-page" v-if="list?.length">
-    <div class="test-page-content">
+    <div v-if="index < list.length" class="test-page-content">
       <h2>{{ list[index].cn }}</h2>
       <span class="attr">{{
         list[index].attr ? `[${list[index].attr}]` : ''
@@ -17,6 +17,7 @@
         >
       </div>
       <div v-else class="test-page-action">
+        <el-button v-if="index" plain @click="goPrev">上一个</el-button>
         <el-button
           v-if="grasped"
           type="danger"
@@ -26,21 +27,28 @@
         >
         <el-button plain @click="goNext">下一个</el-button>
       </div>
+      <span class="count">{{ index + 1 }} / {{ list.length }}</span>
     </div>
-
-    <span class="count">{{ index + 1 }} / {{ list.length }}</span>
+    <div v-else class="test-page-result">
+      <el-result icon="success" title="已完成">
+        <template #extra>
+          <el-button type="primary" @click="goBack">返回列表</el-button>
+        </template>
+      </el-result>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
   import { ref, unref } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router'
 
   import { debounce } from 'lodash-es'
   import { getWordList } from '@/utils/word-list'
   import { IWordItem } from '@/types/word'
 
   const route = useRoute()
+  const router = useRouter()
 
   const list = ref<IWordItem[]>([])
 
@@ -48,10 +56,11 @@
   const showAnswer = ref(false)
   const grasped = ref(false)
 
-  // const goPrev = debounce(() => {
-  //   index.value--
-  //   showAnswer.value = false
-  // }, 200)
+  const goPrev = debounce(() => {
+    index.value--
+    showAnswer.value = false
+    grasped.value = false
+  }, 200)
 
   const goNext = debounce(() => {
     index.value++
@@ -66,6 +75,10 @@
     if (!thisGrasped) {
       list.value.push(unref(list)[unref(index)])
     }
+  }
+
+  const goBack = () => {
+    router.push({ name: 'ClassPage' })
   }
 
   const init = () => {
@@ -106,6 +119,14 @@
     &-action {
       display: flex;
       gap: 16px;
+    }
+
+    &-result {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
     }
 
     .count {
