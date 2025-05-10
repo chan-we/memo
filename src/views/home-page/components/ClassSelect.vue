@@ -1,5 +1,5 @@
 <template>
-  <div class="class-page">
+  <div class="class-select">
     <el-row>
       <el-col v-for="i in 24" :key="i" :xs="24" :sm="12" :lg="6">
         <el-card shadow="hover" @click="goDetail(i)">

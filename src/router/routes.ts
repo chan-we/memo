@@ -3,7 +3,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'ClassPage',
-    component: () => import('@/views/class-page/ClassPage.vue'),
+    component: () => import('@/views/home-page/HomePage.vue'),
   },
   {
     path: '/:id',
