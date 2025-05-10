@@ -1,7 +1,7 @@
 <template>
   <div class="class-select">
     <el-row>
-      <el-col v-for="i in 24" :key="i" :xs="24" :sm="12" :lg="6">
+      <el-col v-for="i in 48" :key="i" :xs="24" :sm="12" :lg="6">
         <el-card shadow="hover" @click="goDetail(i)">
           <p>第{{ i }}课</p>
         </el-card>
@@ -18,7 +18,7 @@
     router.push({
       name: 'TestPage',
       params: {
-        id: i,
+        id: `xbr-l1-${i.toString().padStart(2, '0')}`,
       },
     })
   }
