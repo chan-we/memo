@@ -3,6 +3,9 @@
     <template v-if="list?.length">
       <div v-if="index < list.length" class="test-page-content">
         <h2>{{ list[index].jp }}</h2>
+        <el-button circle @click="handlePlaySound(list[index].audioLinkUrl)">
+          <el-icon><Headset /></el-icon>
+        </el-button>
         <span class="attr">{{
           list[index].partOfSpeech ? `[${list[index].partOfSpeech}]` : ''
         }}</span>
@@ -52,6 +55,7 @@
   import { ref, unref } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { getWordsByLesson } from '@/api'
+  import { Headset } from '@element-plus/icons-vue'
 
   import { debounce } from 'lodash-es'
   import { IWordItem } from '@/types/word'
@@ -65,6 +69,14 @@
   const showAnswer = ref(false)
   const grasped = ref(false)
   const initLoading = ref(true)
+
+  const handlePlaySound = (url?: string) => {
+    if (!url) {
+      return
+    }
+    const audio = new Audio(url)
+    audio.play()
+  }
 
   const goPrev = debounce(() => {
     index.value--

@@ -4,7 +4,7 @@ export interface IWordItem {
   attr?: string
   id: string
   partOfSpeech?: string
-  audioLink?: string
+  audioLinkUrl?: string
   lessonId: string
   orderId: number
 }
