@@ -12,15 +12,30 @@
 
 <script setup lang="ts">
   import { useRouter } from 'vue-router'
+  import { StudyMode } from '@/utils/enum'
+
   const router = useRouter()
 
+  const props = defineProps<{
+    target?: StudyMode
+  }>()
+
   const goDetail = (i: number) => {
-    router.push({
-      name: 'TestPage',
-      params: {
-        id: `xbr-l1-${i.toString().padStart(2, '0')}`,
-      },
-    })
+    if (props.target === StudyMode.MEMORIZATION) {
+      router.push({
+        name: 'TestPage',
+        params: {
+          id: `xbr-l1-${i.toString().padStart(2, '0')}`,
+        },
+      })
+    } else if (props.target === StudyMode.DICTATION) {
+      router.push({
+        name: 'DictationPage',
+        params: {
+          id: `xbr-l1-${i.toString().padStart(2, '0')}`,
+        },
+      })
+    }
   }
 </script>
 

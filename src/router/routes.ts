@@ -6,8 +6,13 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/views/home-page/HomePage.vue'),
   },
   {
-    path: '/:id',
+    path: '/memorization/:id',
     name: 'TestPage',
     component: () => import('@/views/test-page/TestPage.vue'),
+  },
+  {
+    path: '/dictation/:id',
+    name: 'DictationPage',
+    component: () => import('@/views/dictation-page/DictationPage.vue'),
   },
 ]
